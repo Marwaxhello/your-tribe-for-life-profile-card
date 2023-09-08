@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = RichTextSlice;
+type PageDocumentDataSlicesSlice = RichTextSlice | ImagecontainerSlice;
 
 /**
  * Content for Page documents
@@ -30,7 +30,7 @@ interface PageDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#slices
 	 */
-	slices: prismic.SliceZone<PageDocumentDataSlicesSlice>;
+	slices: prismic.SliceZone<PageDocumentDataSlicesSlice>
 	/**
 	 * Meta Title field in *Page*
 	 *
@@ -39,7 +39,7 @@ interface PageDocumentData {
 	 * - **API ID Path**: page.meta_title
 	 * - **Tab**: SEO & Metadata
 	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
+	 */;
 	meta_title: prismic.KeyTextField;
 
 	/**
@@ -83,6 +83,51 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 export type AllDocumentTypes = PageDocument;
 
 /**
+ * Primary content in *Imagecontainer → Primary*
+ */
+export interface ImagecontainerSliceDefaultPrimary {
+	/**
+	 * images field in *Imagecontainer → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: imagecontainer.primary.images
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	images: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Imagecontainer Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImagecontainerSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<ImagecontainerSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Imagecontainer*
+ */
+type ImagecontainerSliceVariation = ImagecontainerSliceDefault;
+
+/**
+ * Imagecontainer Shared Slice
+ *
+ * - **API ID**: `imagecontainer`
+ * - **Description**: Imagecontainer
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImagecontainerSlice = prismic.SharedSlice<
+	'imagecontainer',
+	ImagecontainerSliceVariation
+>;
+
+/**
  * Primary content in *RichText → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -95,6 +140,16 @@ export interface RichTextSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
 	 */
 	content: prismic.RichTextField;
+
+	/**
+	 * image field in *RichText → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: rich_text.primary.image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>;
 }
 
 /**
@@ -138,6 +193,10 @@ declare module '@prismicio/client' {
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
 			AllDocumentTypes,
+			ImagecontainerSlice,
+			ImagecontainerSliceDefaultPrimary,
+			ImagecontainerSliceVariation,
+			ImagecontainerSliceDefault,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,

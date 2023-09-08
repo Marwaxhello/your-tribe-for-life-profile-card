@@ -1,0 +1,27 @@
+{
+  "id": "imagecontainer",
+  "type": "SharedSlice",
+  "name": "Imagecontainer",
+  "description": "Imagecontainer",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "images": {
+          "type": "Image",
+          "config": {
+            "label": "images",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
