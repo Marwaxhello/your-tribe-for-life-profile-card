@@ -105,6 +105,36 @@ export interface ImagecontainerSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#key-text
 	 */
 	name: prismic.KeyTextField;
+
+	/**
+	 * bio field in *Imagecontainer → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: imagecontainer.primary.bio
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	bio: prismic.KeyTextField;
+
+	/**
+	 * Github field in *Imagecontainer → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: imagecontainer.primary.github
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	github: prismic.LinkField;
+
+	/**
+	 * highlights field in *Imagecontainer → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: imagecontainer.primary.highlights
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	highlights: prismic.ImageField<never>;
 }
 
 /**

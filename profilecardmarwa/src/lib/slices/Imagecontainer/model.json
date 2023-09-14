@@ -26,6 +26,29 @@
             "label": "Name",
             "placeholder": ""
           }
+        },
+        "bio": {
+          "type": "Text",
+          "config": {
+            "label": "bio",
+            "placeholder": ""
+          }
+        },
+        "github": {
+          "type": "Link",
+          "config": {
+            "label": "Github",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "highlights": {
+          "type": "Image",
+          "config": {
+            "label": "highlights",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {}
